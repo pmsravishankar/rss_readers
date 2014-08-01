@@ -3,6 +3,12 @@ class FeedsController < ApplicationController
   # GET /feeds.json
   def index
     @feeds = Feed.all
+    all_feeds = []
+    @feeds.each do |feed|
+      rss = SimpleRSS.parse open(feed.url)
+      all_feeds << rss.items
+    end
+    @rss_items = (all_feeds.flatten.sort_by { |k| k[:pubDate] }).reverse
 
     respond_to do |format|
       format.html # index.html.erb

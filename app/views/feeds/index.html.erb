@@ -25,6 +25,22 @@
   <% end %>
 </table>
 
+<br/>
+
+<h1>Latest Articles</h1>
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Published Date</th>
+  </tr>
+  <% @rss_items.each do |item| %>
+      <tr>
+        <td><%= link_to item[:title].html_safe, item[:link].html_safe, :target => "_blank" %></td>
+        <td><%= item[:pubDate] %></td>
+      </tr>
+  <% end %>
+</table>
+
 <% content_for :sidebar do %>
     <li><%= link_to 'Create a Feed', new_feed_path %></li>
 <% end %>
