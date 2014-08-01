@@ -15,7 +15,8 @@ class FeedsController < ApplicationController
   def show
     @feed = Feed.find(params[:id])
     @rss = SimpleRSS.parse open(@feed.url)
-    @rss_items = @rss.items
+    #@rss_items = @rss.items
+    @rss_items = (@rss.items.sort_by { |k| k[:pubDate] }).reverse
 
     respond_to do |format|
       format.html # show.html.erb
