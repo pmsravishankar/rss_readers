@@ -1,0 +1,9 @@
+<h1>Editing - <%= @feed.title %></h1>
+
+<%= render 'form' %>
+
+<% content_for :sidebar do %>
+    <li><%= link_to 'Create a Feed', new_feed_path %></li>
+    <li><%= link_to 'Show', @feed %></li>
+    <li><%= link_to 'Destroy', @feed, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= link_to @feed.title, @feed.url, :target => "_blank" %></h1>
+
+<br />
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Published Date</th>
+  </tr>
+<% @rss.items.each do |item| %>
+      <tr>
+        <td><%= item[:title].html_safe %></td>
+        <td><%= item[:pubDate] %></td>
+      </tr>
+<% end %>
+</table>
+
+<% content_for :sidebar do %>
+    <li><%= link_to 'Create a Feed', new_feed_path %></li><hr/>
+    <li><%= link_to 'Edit', edit_feed_path(@feed) %></li>
+    <li><%= link_to 'Destroy', @feed, method: :delete, data: {confirm: 'Are you sure?'} %></li>
+<% end %>

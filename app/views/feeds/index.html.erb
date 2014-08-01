@@ -1,0 +1,30 @@
+<h1>All Feeds</h1>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>URL</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @feeds.each do |rss_reader| %>
+  <tr>
+    <td><%= link_to rss_reader.title, rss_reader.url, :target => "_blank" %></td>
+    <td><%= link_to rss_reader.url, rss_reader.url, :target => "_blank" %></td>
+    <td><%= link_to 'Show', rss_reader %></td>
+    <td><%= link_to 'Edit', edit_feed_path(rss_reader) %></td>
+    <td><%= link_to 'Destroy', rss_reader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+  <% if @feeds.empty? %>
+  <tr>
+    <td colspan="5">No Feeds</td>
+  </tr>
+  <% end %>
+</table>
+
+<% content_for :sidebar do %>
+    <li><%= link_to 'Create a Feed', new_feed_path %></li>
+<% end %>
