@@ -9,9 +9,9 @@
     <th>Title</th>
     <th>Published Date</th>
   </tr>
-<% @rss.items.each do |item| %>
+<% @rss_items.each do |item| %>
       <tr>
-        <td><%= item[:title].html_safe %></td>
+        <td><%= link_to item[:title].html_safe, item[:link].html_safe, :target => "_blank" %></td>
         <td><%= item[:pubDate] %></td>
       </tr>
 <% end %>
